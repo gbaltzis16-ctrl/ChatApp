@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="base.css">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Chatroom</div>
+        <div id="chat"></div>
+
+        <div class="messageinput">
+            <input id="msg" placeholder="Type message...">
+            <button onclick="sendMsg()">Send</button>
+        </div>
+    </div>
+    <script>
+        const ws = new WebSocket ("ws://localhost:8765");
+        const div= document.getElementById("chat");
+
+        ws.onopen= () => div.innerText+= "[connected]\n";
+
+        ws.onmessage= (event) => {
+            div.innerText+=  "Server: " +  event.data+"\n";
+            div.scrollTop= div.scrollHeight;
+        };
+
+        ws.onclose= () => div.innerText+= "[disconnected]\n";
+
+        function sendMsg(){
+            const input= document.getElementById("msg");
+            ws.send(input.value);
+            div.innerHTML+= `<p>you: ${input.value}</p>`;
+            input.value= "";
+        }
+    </script>
+</body>
+</html>
