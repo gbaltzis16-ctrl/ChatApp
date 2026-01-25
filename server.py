@@ -1,6 +1,10 @@
+import os
+
 import websockets
 import websockets as ws
 import asyncio
+
+PORT = int(os.environ.get("PORT", 8000))
 
 clients = set()
 
@@ -15,7 +19,7 @@ async def handler(websocket ):
         clients.remove(websocket)
 
 async def main():
-    async with websockets.serve(handler, "localhost", 8765):
+    async with websockets.serve(handler, "0.0.0.0", PORT):
         print ("websocket connected on ws://localhost:8765")
         await asyncio.Future()
 
