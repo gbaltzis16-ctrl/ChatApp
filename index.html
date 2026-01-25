@@ -16,7 +16,7 @@
         </div>
     </div>
     <script>
-        const ws = new WebSocket ("ws://localhost:8765");
+        const ws = new WebSocket ("ws://chatapp-yc8o.onrender.com")
         const div= document.getElementById("chat");
 
         ws.onopen= () => div.innerText+= "[connected]\n";
