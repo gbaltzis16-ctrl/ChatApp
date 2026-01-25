@@ -31,7 +31,7 @@
         function sendMsg(){
             const input= document.getElementById("msg");
             ws.send(input.value);
-            div.innerHTML+= `<p>you: ${input.value}</p>`;
+            div.innerText+= "You: " + input.value + "\n";
             input.value= "";
         }
     </script>
