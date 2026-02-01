@@ -1,5 +1,5 @@
 body{
-    font-family: Arial, sans-serif;
+    font-family: "Oxygen Mono", Arial, sans-serif;
     background: #d4d5d7;
     padding: 40px ;
     margin: 0;
@@ -44,6 +44,7 @@ body{
 }
 
 #msg{
+    font-family: "Oxygen Mono", Arial, sans-serif;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -51,6 +52,7 @@ body{
 }
 
 button{
+    font-family: "Oxygen Mono", Arial, sans-serif;
     padding: 10px 14px;
     margin-left: 10px;
     background: #006fff;
@@ -73,3 +75,19 @@ button:hover{
     background: #bbb;
     border-radius: 4px;
 }
+
+body.dark{
+    background: #121212;
+    color: #111;
+}
+
+body.dark input,body.dark button{
+    background: #1e1e1e;
+    color: #fafafa;
+}
+
+body.dark #chat {
+    background: #3e3e3e;
+    color: #eaeaea;
+}
+

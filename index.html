@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="base.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
@@ -13,6 +16,7 @@
         <div class="messageinput">
             <input id="msg" placeholder="Type message...">
             <button onclick="sendMsg()">Send</button>
+            <button onclick="toggleTheme()">Dark Mode</button>
         </div>
     </div>
     <script>
@@ -33,6 +37,10 @@
             ws.send(input.value);
             div.innerText+= "You: " + input.value + "\n";
             input.value= "";
+        }
+
+        function toggleTheme(){
+            document.body.classList.toggle("dark");
         }
     </script>
 </body>
