@@ -5,6 +5,7 @@ body{
     margin: 0;
     display: flex;
     justify-content: center;
+    border-color:#ccc;
 }
 
 .messageinput{
@@ -14,7 +15,7 @@ body{
     border-radius: 0 0 8px 8px;
 }
 
-.container{
+#container{
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.1);
@@ -35,7 +36,7 @@ body{
 #chat{
     height: 350px;
     padding: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid;
     overflow-y: auto;
     white-space:pre-wrap;
     overflow-wrap: break-word;
@@ -46,7 +47,7 @@ body{
 #msg{
     font-family: "Oxygen Mono", Arial, sans-serif;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid;
     border-radius: 6px;
     font-size: 14px;
 }
@@ -79,6 +80,7 @@ button:hover{
 body.dark{
     background: #121212;
     color: #111;
+    border-color: #222;
 }
 
 body.dark input,body.dark button{
@@ -90,4 +92,9 @@ body.dark #chat {
     background: #3e3e3e;
     color: #eaeaea;
 }
+
+body.dark .header, body.dark .messageinput{
+    background: #3e00a0;
+}
+
 

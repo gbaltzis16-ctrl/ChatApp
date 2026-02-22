@@ -9,28 +9,34 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="container">
+    <div id="name">
+        <h2>enter your name</h2>
+        <input type="text" id="nameInput" placeholder="username">
+        <button id="joinButton">join chat</button>
+    </div>
+    <div id="container" style="display: none;">
         <div class="header">George's Chatroom</div>
         <div id="chat"></div>
 
         <div class="messageinput">
             <input id="msg" placeholder="Type message...">
             <button onclick="sendMsg()">Send</button>
-            <button onclick="toggleTheme()">Dark Mode</button>
+            <button id="toggleTheme" onclick="toggleTheme()">🌕</button>
         </div>
     </div>
     <script>
-        const ws = new WebSocket ("wss://chatapp-yc8o.onrender.com")
+        let ws;
         const div= document.getElementById("chat");
+        const theme= document.getElementById("toggleTheme");
 
-        ws.onopen= () => div.innerText+= "[connected]\n";
+        const nameScreen= document.getElementById("name");
+        const chatscreen= document.getElementById("container");
+        const joinButton= document.getElementById("joinButton");
+        const nameInput= document.getElementById("nameInput");
 
-        ws.onmessage= (event) => {
-            div.innerText+=  "Server: " +  event.data+"\n";
-            div.scrollTop= div.scrollHeight;
-        };
+        let username;
 
-        ws.onclose= () => div.innerText+= "[disconnected]\n";
+
 
         function sendMsg(){
             const input= document.getElementById("msg");
@@ -39,8 +45,41 @@
             input.value= "";
         }
 
+        function updateIcon(){
+            theme.textContent= document.body.classList.contains("dark")
+            ? "☀️"
+            :"🌕";
+            }
+        updateIcon();
+
         function toggleTheme(){
             document.body.classList.toggle("dark");
+            updateIcon();
+        }
+
+        joinButton.addEventListener("click", ()=> {
+            username= nameInput.value.trim();
+            if(!username) return;
+            StartChat();
+        });
+
+        function StartChat(){
+            ws = new WebSocket ("wss://chatapp-yc8o.onrender.com");
+
+            ws.onopen= () => {
+                div.innerText+= "[connected]\n";
+                ws.send(username);
+
+                nameScreen.classList.add("hidden");
+                chatscreen.classList.remove("hidden");
+            }
+
+            ws.onmessage= (event) => {
+                div.innerText+=  "Server: " +  event.data+"\n";
+                div.scrollTop= div.scrollHeight;
+            };
+
+            ws.onclose= () => div.innerText+= "[disconnected]\n";
         }
     </script>
 </body>
