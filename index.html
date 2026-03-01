@@ -80,6 +80,8 @@
             };
 
             ws.onclose= () => div.innerText+= "[disconnected]\n";
+
+            ws.onerror= (err) => console.error("websocket error:",err);
         }
     </script>
 </body>
