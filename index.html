@@ -64,7 +64,7 @@
         });
 
         function StartChat(){
-            ws = new WebSocket ("wss://chatapp-yc8o.onrender.com");
+            ws = new WebSocket ("wss://chatapp-yc8o.onrender.com/");
 
             ws.onopen= () => {
                 div.innerText+= "[connected]\n";
