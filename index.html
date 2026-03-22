@@ -6,13 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap" rel="stylesheet">
-    <title>Title</title>
+    <title>Chatroom Project</title>
 </head>
 <body>
     <div id="name">
-        <h2>enter your name</h2>
+        <h2>Enter your name...</h2>
         <input type="text" id="nameInput" placeholder="username">
-        <button id="joinButton">join chat</button>
+        <button id="joinButton">Join Chat</button>
     </div>
     <div id="container" class="hidden">
         <div class="header">George's Chatroom</div>
@@ -41,7 +41,7 @@
         function sendMsg(){
             const input= document.getElementById("msg");
             ws.send(input.value);
-            div.innerText+= "You: " + input.value + "\n";
+            div.innerText+=  input.value + "\n";
             input.value= "";
         }
 
@@ -67,7 +67,7 @@
             ws = new WebSocket ("wss://chatapp-yc8o.onrender.com/");
 
             ws.onopen= () => {
-                div.innerText+= "[connected]\n";
+                div.innerText+= "[Connected]\n";
                 ws.send(username);
 
                 nameScreen.classList.add("hidden");
@@ -75,11 +75,11 @@
             }
 
             ws.onmessage= (event) => {
-                div.innerText+=  "Server: " +  event.data+"\n";
+                div.innerText+=   event.data+"\n";
                 div.scrollTop= div.scrollHeight;
             };
 
-            ws.onclose= () => div.innerText+= "[disconnected]\n";
+            ws.onclose= () => div.innerText+= "[Disconnected]\n";
 
             ws.onerror= (err) => console.error("websocket error:",err);
         }
